@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block body_block %}
+  <div class="jumbotron">
+    <h1>Details:</h1>
+    <p>Name:{{event_detail.name}}</p>
+    <p>Time:{{event_detail.time}}</p>
+    <p>Duration:{{ event_detail.duration }}</p>
+    <p>Image:{{ event_detail.image }}</p>
+  </div>
+
+  <div class="container">
+  <p><a class="btn btn-warning" href="{% url 'events:update' pk=event_detail.pk %}">Update</a>
+  <a class="btn btn-danger" href="{% url 'events:delete' pk=event_detail.pk %}">Delete</a> </p>
+  </div>
+{% endblock %}

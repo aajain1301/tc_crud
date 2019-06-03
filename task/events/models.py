@@ -11,7 +11,7 @@ class Event(models.Model):
     name = models.CharField(max_length=100)
     time = models.TimeField(auto_now=False, auto_now_add=False)
     duration = models.IntegerField()
-    image = models.ImageField(storage='static/images')
+    image = models.ImageField(upload_to='profile_pics',verbose_name='image', blank=True)
     visible = models.BooleanField(default=True)
 
     def get_absolute_url(self):

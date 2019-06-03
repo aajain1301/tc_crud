@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
+{% load static %}
 
 {% block body_block %}
   <div class="jumbotron">
@@ -8,10 +9,13 @@
     <p>Time:{{event_detail.time}}</p>
     <p>Duration:{{ event_detail.duration }}</p>
     <p>Image:{{ event_detail.image }}</p>
+    <img src="{{event_detail.image.url}}" alt="Sorry">
   </div>
 
   <div class="container">
-  <p><a class="btn btn-warning" href="{% url 'events:update' pk=event_detail.pk %}">Update</a>
-  <a class="btn btn-danger" href="{% url 'events:delete' pk=event_detail.pk %}">Delete</a> </p>
+    {% if user.is_authenticated and user.username == event_detail.organiser %}
+      <p><a class="btn btn-warning" href="{% url 'events:update' pk=event_detail.pk %}">Update</a>
+      <a class="btn btn-danger" href="{% url 'events:delete' pk=event_detail.pk %}">Delete</a> </p>
+    {% endif %}
   </div>
 {% endblock %}
